@@ -56,7 +56,7 @@ This will init your panorama, filling the DOMObject you passed previously.
 	* `success` : `[Function]` `function(data){ /* scope is the panorama object on which you can call any Google Maps API */ }`
 	* `error` : `[Function]` `function(error){ /* … */ }`
 	* `pano` : `[String]` custom panorama id on which you wish to start your panorama (you'll need to provide a panoProvider callback)
-	* `panoProvider` : `[Function]` custom panorama provider method for full custom panoramas (not linked with any Google Street View panoramas). You'll need to provide a panorama id as options.pano to specify which panorama you want to start with. [See example](https://github.com/topheman/PanoramaSensorsViewer/blob/master/src/js/PanoramaSensorsViewer/src/demo.custompanorama.html).
+	* `panoProvider` : `[Function]` custom panorama provider method for full custom panoramas (not linked with any Google Street View panoramas). You'll need to provide a panorama id as options.pano to specify which panorama you want to start with. [See example](https://github.com/topheman/PanoramaSensorsViewer/blob/master/src/demo.custompanorama.html).
 	* `enableRemotetilt` : `[Boolean]` Will load the deviceorientation emulator if set at true (and if no sensors on your device)
 	* `remotetiltIsBlocked` : `[Function]` Callback called if the emulator popup has been blocked by a popup blocker such as adBlock
 	* `remotetiltIsUnblocked` : `[Function]` Callback called if the emulator popup has not been blocked by a popup blocker
@@ -67,8 +67,8 @@ This will init your panorama, filling the DOMObject you passed previously.
 #####parameters advanced infos
 
 * in the `success` callback, you have access to all the Google Maps API that you can apply to your Google panorama which is the current scope `this`.
-* You can't use `pano` without `panoProvider` and only for panoramas which aren't connected to Google Street View (you'll be giving a `null` position in this case) ([see example](https://github.com/topheman/PanoramaSensorsViewer/blob/master/src/js/PanoramaSensorsViewer/src/demo.custompanorama.html)).
-* If you want to connect your custom panorama, use the Google Maps API inside the `success` callback : `.registerPanoProvider()` like in [this example](https://github.com/topheman/PanoramaSensorsViewer/blob/master/src/js/PanoramaSensorsViewer/src/demo.custompanorama.tiles.html).
+* You can't use `pano` without `panoProvider` and only for panoramas which aren't connected to Google Street View (you'll be giving a `null` position in this case) ([see example](https://github.com/topheman/PanoramaSensorsViewer/blob/master/src/demo.custompanorama.html)).
+* If you want to connect your custom panorama, use the Google Maps API inside the `success` callback : `.registerPanoProvider()` like in [this example](https://github.com/topheman/PanoramaSensorsViewer/blob/master/src/demo.custompanorama.tiles.html).
 
 ####.isInit()
 
