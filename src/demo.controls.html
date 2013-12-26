@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>PanoramaSensorsViewer <!-- @echo PanoramaSensorsViewerVersionAndRevision --> / Controls</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <meta name="apple-touch-fullscreen" content="yes" />
+        <meta name=viewport content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+        <link rel="stylesheet" type="text/css" href="./css/topheman-panorama.css" />
+        <link rel="stylesheet" type="text/css" href="./css/common.css" />
+        <!-- @include googleAnalyticsScriptTag.html -->
+    </head>
+    <body>
+        <div id="pano"></div>
+        <script src="./js/vendor/require.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            require(['./js/require.config'], function(config) {
+                require(['utils/screenManager','topheman-panorama/PanoramaManager'],function(screenManager,PanoramaManager){
+                    var latLon = {lat:42.345573, lon:-71.098326};
+                    var panoramaManager = new PanoramaManager(document.getElementById('pano'));
+                    var panoramaOptions = {
+                        //this is only to take care of android firefox (there seem to be a bug on addEventListener of deviceorientation on some devices)
+                        firefoxSensorsNotReady: function(){
+                            var message = "Connection to your device\'s sensors failed (android firefox bug) please try to reload the page\n(it could take several times, after that, the connection will be made and the app will run smoothly).\nI\'m sorry for this, but I can\'t do anything more about it ...";
+                            if(confirm(message)){
+                                window.location.reload(true);
+                            }
+                        },
+                        success : function(data){
+                            //this = google panorama object (access to the google API)
+                            this.setOptions({
+                                addressControl: false,
+                                zoomControl: false,
+                                enableCloseButton: false
+                            });
+                        }
+                    };
+                    screenManager.init(panoramaManager);
+                    panoramaManager.init(latLon,panoramaOptions);
+                });
+            });
+        </script>
+    </body>
+</html>

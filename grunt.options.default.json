@@ -1,0 +1,9 @@
+{
+  "ftp-deploy": {
+      "release" : {
+          "host" : "ftp.example.com",
+          "port" : 21,
+          "dest" : "/path/to/directory/on/your/server"
+      }
+  }
+}

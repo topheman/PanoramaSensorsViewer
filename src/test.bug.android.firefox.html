@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>PanoramaSensorsViewer <!-- @echo PanoramaSensorsViewerVersionAndRevision --> / Bug test Android Firefox</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <meta name="apple-touch-fullscreen" content="yes" />
+        <meta name=viewport content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+        <link rel="stylesheet" type="text/css" href="./css/common.css" />
+        <!-- @include googleAnalyticsScriptTag.html -->
+    </head>
+    <body>
+        <h1><a href="./">PanoramaSensorsViewer</a></h1>
+        <p>As explained <a href="https://github.com/topheman/PanoramaSensorsViewer/#known-bugs" title="README - known bugs part">here in the known bugs</a>, I experienced on my Nexus 10 tablet, with firefox the following problem :</p>
+        <p><code>window.addEventLister("deviceorientation", handler, false)</code> takes time to apply (sometimes it's needed to put the application in background, reload it, change tab, etc ... to force the connection to the gyroscope+accelerometer).</p>
+        <p>Here is a use case</p>
+        <ul>
+            <li>take your android device and close firefox</li>
+            <li>load this page with firefox</li>
+            <li>wait till numbers display or an alert tells that it failed</li>
+        </ul>
+        <pre id="infos"></pre>
+        <script type="text/javascript">
+            var test = null, divInfos = document.getElementById("infos");
+            
+            var testCallback = function(){
+                if(test === null){
+                    alert("It's been 2000ms and still no event from deviceorientation.");
+                }
+            };
+            setTimeout(testCallback,2000);
+            
+            var handler = function(e){
+                test = e.alpha;
+                infos.innerHTML = JSON.stringify(e,null,"\t");
+            };
+            window.addEventListener("deviceorientation", handler, false);
+        </script>
+    </body>
+</html>

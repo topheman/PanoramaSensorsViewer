@@ -1,0 +1,52 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <title>PanoramaSensorsViewer <!-- @echo PanoramaSensorsViewerVersionAndRevision --> / deviceorientationHelper</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <meta name="apple-touch-fullscreen" content="yes" />
+        <meta name=viewport content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+        <link rel="stylesheet" type="text/css" href="./css/common.css" />
+        <!-- @include googleAnalyticsScriptTag.html -->
+    </head>
+  <body>
+      <h2>deviceOrientationHelper</h2>
+      <pre id="infos"></pre>
+        <script src="./js/vendor/require.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            require(['./js/require.config'], function(config) {
+
+                require(['topheman-panorama/utils/sensorsChecker','topheman-panorama/utils/deviceorientationHelper'],function(sensorsChecker,deviceorientationHelper){
+
+                    var start,
+                        divInfos = document.getElementById('infos');
+
+                    start = function(){
+
+                        deviceorientationHelper.init(function(e,infos){
+                            console.info(e,infos);
+                            divInfos.innerHTML = "Processed\n"+JSON.stringify(infos,null,"\t")
+                                    +"\nOriginal\n"+JSON.stringify({alpha: e.alpha, beta:e.beta, gamma: e.gamma},null,"\t")
+                                    +"\nScreen Orientation : "+ (window.screen ? window.screen.mozOrientation : "")
+                            ;
+                        });
+
+                    };
+                    
+                    sensorsChecker.checkDeviceorientation(function(){
+                        start();
+                    },function(){
+                        require(['topheman-panorama/vendor/device-motion-polyfill'],function(undefined){
+                            start();
+                        });
+                    },{
+                        userAgentCheck: /(iPad|iPhone|Mobile|Tablet)/
+                    });
+
+                });
+
+            });
+        </script>
+    </body>
+</html>

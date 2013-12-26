@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>PanoramaSensorsViewer <!-- @echo PanoramaSensorsViewerVersionAndRevision --></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <meta name="apple-touch-fullscreen" content="yes" />
+        <meta name=viewport content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+        <link rel="stylesheet" type="text/css" href="./css/common.css" />
+        <!-- @include googleAnalyticsScriptTag.html -->
+    </head>
+    <body>
+        <span id="forkongithub"><a href="https://github.com/topheman/PanoramaSensorsViewer">Fork me on GitHub</a></span>
+        <h1><a href="./">PanoramaSensorsViewer</a> <!-- @echo PanoramaSensorsViewerVersionAndRevision --></h1>
+        <img src="http://goo.gl/bvkj1n.qr" class="qr-code" alt="QR Code to this page">
+        <div class="summary">
+            <!-- @exclude -->
+            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://labs.topheman.com/PanoramaSensorsViewer" data-text="Add gyroscope+accelerometer to Google Street View" data-via="topheman" data-size="large" data-count="none" data-hashtags="PanoramaSensorsViewer">Tweet</a>
+            <!-- @endexclude -->
+            <p class="non-mobile-infos">To test the examples of this page on your mobile device, <strong>just snap the QR-Code</strong> on the left.</p>
+            <p style="font-weight: bold;">You should also check out <a href="http://streetview.topheman.com">Topheman Street View</a>, an application based on PanoramaSensorsViewer.</p>
+            <p>Summary :</p>
+            <ul>
+                <li><a href="#getting-started">Getting started with PanoramaSensorsViewer</a></li>
+                <li><a href="#dependency-utils">Dependency utils you can use standalone</a></li>
+            </ul>
+        </div>
+        <hr>
+        <h2 id="getting-started">Getting started with PanoramaSensorsViewer</h2>
+        <p>
+            Here is a list of demos using PanoramaSensorsViewer, so you could understand how to use the Google Maps API inside it.<br>
+            This will work as well on a desktop as on a mobile device (what you should do is <strong>test it on your mobile device and watch the code on your desktop</strong>).<br>
+            For each example, you will find :
+        </p>
+        <ul>
+            <li>A link to the demo</li>
+            <li>A link to the code on github</li>
+            <li>A link to the Google Maps API doc</li>
+        </ul>
+        <h3>Examples</h3>
+        <dl>
+            <dt><a href="./demo.basic.html">Basic</a></dt>
+            <dd>
+                <span>This is a basic demo like this one on the Google API doc, but with sensors.</span>
+                <ul>
+                    <li><a href="https://github.com/topheman/PanoramaSensorsViewer/blob/master/src/demo.basic.html">See code on github</a></li>
+                    <li><a href="https://developers.google.com/maps/documentation/javascript/examples/streetview-embed">See original Google example</a></li>
+                </ul>
+            </dd>
+            <dt><a href="./demo.events.html">Events</a></dt>
+            <dd>
+                <span>Add Street View events to your panorama, inside the success callback of PanoramaManager.init.</span>
+                <ul>
+                    <li><a href="https://github.com/topheman/PanoramaSensorsViewer/blob/master/src/demo.events.html">See code on github</a></li>
+                    <li><a href="https://developers.google.com/maps/documentation/javascript/examples/streetview-events">See original Google example</a></li>
+                </ul>
+            </dd>
+            <dt><a href="./demo.controls.html">Alter controls</a></dt>
+            <dd>
+                <span>
+                    Alter the controls of your panorama via the setOptions method of Google Maps API for panorama, inside the success callback of PanoramaManager.init (zoom control and address will be hidden).
+                </span>
+                <ul>
+                    <li><a href="https://github.com/topheman/PanoramaSensorsViewer/blob/master/src/demo.controls.html">See code on github</a></li>
+                    <li>
+                        <a href="https://developers.google.com/maps/documentation/javascript/examples/streetview-controls">See original Google example</a> - 
+                        <a href="http://blog.mridey.com/2010/05/controls-in-maps-javascript-api-v3.html">Great link about controls in Google Maps API</a>
+                    </li>
+                </ul>
+            </dd>
+            <dt><a href="./demo.custompanorama.html">Custom panorama</a></dt>
+            <dd>
+                <span>
+                    In the options, setup your own panoProvider and pano (like you would with Google Maps API) and get your own custom panorama with PanoramaSensorsViewer !
+                </span>
+                <ul>
+                    <li><a href="https://github.com/topheman/PanoramaSensorsViewer/blob/master/src/demo.custompanorama.html">See code on github</a></li>
+                    <li>
+                        <a href="https://developers.google.com/maps/documentation/javascript/examples/streetview-custom-simple">See original Google example</a>
+                    </li>
+                </ul>
+            </dd>
+            <dt><a href="./demo.custompanorama.tiles.html">Custom panorama tiles</a></dt>
+            <dd>
+                <span>
+                    Connect your own custom panorama provider (with a tiled panorama) to the Google panoramas !
+                </span>
+                <ul>
+                    <li><a href="https://github.com/topheman/PanoramaSensorsViewer/blob/master/src/demo.custompanorama.tiles.html">See code on github</a></li>
+                    <li>
+                        <a href="https://developers.google.com/maps/documentation/javascript/examples/streetview-custom-tiles">See original Google example</a>
+                    </li>
+                    <li>
+                        <a href="http://streetview.topheman.com/#lat=48.8768564&lon=2.3299400999999307">Check it out on Topheman Street View ! Enter inside google office !</a>
+                    </li>
+                </ul>
+            </dd>
+        </dl>
+        <hr style="clear:left;">
+        <h3>API Doc</h3>
+        <p><a href="https://github.com/topheman/PanoramaSensorsViewer/tree/master/src/">Check the API Doc on github.</a></p>
+        <hr style="clear:left;">
+        <h2 id="dependency-utils">Dependency utils that you can use standalone</h2>
+        <p>PanoramaSensorsViewer ships some utils I made that can run in standalone (both non-AMD and AMD compatible). While you use PanoramaSensorsViewer, you don't have to worry about them but, it could come handy in some of your project.</p>
+        <h3>blockedPopup.js</h3>
+        <p>We all have popup blockers like AdBlock on our browser, so if your application ever needs popups (I know it's old) and make sure it's been authorized by your user, the little class will let you know.</p>
+        <p><a href="https://github.com/topheman/PanoramaSensorsViewer/blob/master/src/js/topheman-panorama/utils/blockedPopup.js" title="blockedPopup">See the code on the PanoramaSensorsViewer github repository</a></p>
+        <h3>sensorsChecker.js</h3>
+        <p>Mostly all recent browsers expose an api for deviceorientation and devicemotion events. That doesn't mean the device you're on has sensors (accelerometer+gyroscope) to feed them.</p>
+        <p>So to check if the device has sensors, you can't rely on simple feature detection like <code>"ondeviceorientation" in window or "ondevicemotion" in window</code></p>
+        <p>This module will let you check if there is really an accelerometer+gyroscope to rely on.</p>
+        <p><a href="https://github.com/topheman/PanoramaSensorsViewer/blob/master/src/js/topheman-panorama/utils/sensorsChecker.js" title="sensorsChecker">See the code on the PanoramaSensorsViewer github repository</a></p>
+        <hr>
+        <footer>©2013-2014 <a href="http://labs.topheman.com/">labs.topheman.com</a> - Christophe Rosset</footer>
+        <!-- @exclude -->
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+        <!-- @endexclude -->
+    </body>
+</html>

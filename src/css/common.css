@@ -1,0 +1,70 @@
+/**
+ * PanoramaSensorsViewer - Copyright 2013-2014, Christophe Rosset (Topheman) - http://labs.topheman.com
+ */
+html{
+    font-size:75%;
+}
+body{
+    background-color: #EEE;
+    font-family: Arial, "sans-serif";
+}
+h1,h2,h3,h4,h5,h6{
+    color: #900000;
+}
+a{
+    color: #900000;
+}
+a:hover{
+    color: black;
+}
+dt{
+    font-weight: bold;
+    float: left;
+    width: 100px;
+    clear: left;
+}
+dd{
+    float: left;
+    width: 80%;
+    margin-left:0px;
+}
+footer {
+    font-size: 90%;
+    clear:both;
+    text-align: center;
+    color: #62686A; 
+}
+footer a {
+    color: #62686A; 
+}
+code{
+    font-size: 125%;
+}
+.summary{
+    float:left;
+    margin-left: 5px;
+}
+.qr-code{
+    float:left;
+    margin-bottom: 5px;
+}
+.summary ~ hr{
+    clear: both;
+}
+#forkongithub a{background:#000;color:#fff;text-decoration:none;font-family:arial, sans-serif;text-align:center;font-weight:bold;padding:5px 40px;font-size:1rem;line-height:2rem;position:relative;transition:0.5s;}
+#forkongithub a:hover{background:#900000;color:#fff;}
+#forkongithub a::before,#forkongithub a::after{content:"";width:100%;display:block;position:absolute;top:1px;left:0;height:1px;background:#fff;}
+#forkongithub a::after{bottom:1px;top:auto;}
+@media screen and (min-width:540px){
+    #forkongithub{position:absolute;display:block;top:0;right:0;width:160px;overflow:hidden;height:150px;}
+    #forkongithub a{width:150px;position:absolute;top:35px;right:-62px;transform:rotate(45deg);-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);box-shadow:4px 4px 10px rgba(0,0,0,0.8);white-space:nowrap;}
+}
+#forkongithub a{
+    font-size: 1.3rem;
+}
+
+@media screen and (max-width:540px){
+    .qr-code, .non-mobile-infos{
+        display: none;
+    }
+}

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>PanoramaSensorsViewer <!-- @echo PanoramaSensorsViewerVersionAndRevision --> / Custom panorama tiles</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <meta name="apple-touch-fullscreen" content="yes" />
+        <meta name=viewport content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+        <link rel="stylesheet" type="text/css" href="./css/topheman-panorama.css" />
+        <link rel="stylesheet" type="text/css" href="./css/common.css" />
+        <!-- @include googleAnalyticsScriptTag.html -->
+    </head>
+    <body>
+        <div id="pano"></div>
+        <script src="./js/vendor/require.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            require(['./js/require.config'], function(config) {
+                require(['utils/screenManager','topheman-panorama/PanoramaManager'],function(screenManager,PanoramaManager){
+                    var latLon = {lat:48.8768564, lon:2.3299400999999307};
+                    var panoramaManager = new PanoramaManager(document.getElementById('pano'));
+                    
+                    //you'll keep your panorama inside this variable after receiveing it it the success callback
+                    //can be handy if you need it to be accessible to method such as links_changed callbacks (or others)
+                    var myPanorama = null;
+                    
+                    // Return a pano image given the panoID.
+                    function getCustomPanoramaTileUrl(pano, zoom, tileX, tileY) {
+                        //this is a pretty big image, so this would be much better to serve it as tiled pano (see in an other example)
+                        return 'assets/tiles/cp-paris-google-office-outside-'+tileY+'-'+tileX+'.jpg';
+                    }
+                    
+                    // Construct the appropriate StreetViewPanoramaData given
+                    // the passed pano IDs.
+                    function getCustomPanorama(pano, zoom, tileX, tileY) {
+                        switch(pano){
+                            case 'cp-paris-google-office-outside' :
+                                return {
+                                    location: {
+                                        pano: 'cp-paris-google-office-outside',
+                                        description: 'Google Paris - Courtyard'
+                                    },
+                                    links: [],
+                                    // The text for the copyright control.
+                                    copyright: '(c) 2013 Christophe Rosset',
+                                    // The definition of the tiles for this panorama.
+                                    tiles: {
+                                        tileSize: new google.maps.Size(1024, 512),
+                                        worldSize: new google.maps.Size(2048, 1024),
+                                        // The heading in degrees at the origin of the panorama
+                                        // tile set.
+                                        centerHeading: 105,
+                                        getTileUrl: getCustomPanoramaTileUrl
+                                    }
+                                };
+                                break;
+                            default:
+                                return null;
+                        }
+                    }
+                    
+                    function createCustomLinks(entryPanoId) {
+                        var links = myPanorama.getLinks();
+                        var panoId = myPanorama.getPano();
+
+                        switch(panoId) {
+                            case entryPanoId:
+                                // Adding a link in the view from the entrance of the building to the courtyard
+                                links.push({
+                                    heading: 50,
+                                    description : 'Google Office Paris',
+                                    pano : 'cp-paris-google-office-outside'
+                                });
+                                break;
+                            case 'cp-paris-google-office-outside':
+                                // Adding a link in the view from the entrance of the office
+                                // with an arrow pointing at 100 degrees, with a text of 'Exit'
+                                // and loading the street entrance of the building pano on click.
+                                links.push({
+                                  heading: 170,
+                                  description : 'Exit',
+                                  pano : entryPanoId
+                                });
+                                break;
+                            default:
+                                return;
+                        }
+                    }
+                    var panoramaOptions = {
+                        //this is only to take care of android firefox (there seem to be a bug on addEventListener of deviceorientation on some devices)
+                        firefoxSensorsNotReady: function(){
+                            var message = "Connection to your device\'s sensors failed (android firefox bug) please try to reload the page\n(it could take several times, after that, the connection will be made and the app will run smoothly).\nI\'m sorry for this, but I can\'t do anything more about it ...";
+                            if(confirm(message)){
+                                window.location.reload(true);
+                            }
+                        },
+                        success : function(data){
+                            //set the panorama you receive to this variable so it can be accessible to greater scope
+                            myPanorama = this;
+                            this.setOptions({
+                                zoomControl: false
+                            });
+                            //for the moment if you mix custom panorama and google maps panorama, you'll have to use
+                            //the .registerPanoProvider() api (it does exactly the same thing as you can see in the example
+                            //when they affect the panoProvider via options
+                            myPanorama.registerPanoProvider(getCustomPanorama);
+                            google.maps.event.addListener(myPanorama, 'links_changed',function() {
+                                createCustomLinks(data.location.pano);
+                            });
+                        }
+                    };
+                    screenManager.init(panoramaManager);
+                    panoramaManager.init(latLon,panoramaOptions);
+                });
+            });
+        </script>
+    </body>
+</html>
