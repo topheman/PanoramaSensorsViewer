@@ -1,6 +1,6 @@
 {
   "name": "PanoramaSensorsViewer",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "Browse Streetview like if you were in it",
   "main": "grunt server",
   "scripts": {
