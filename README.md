@@ -1,6 +1,6 @@
 #PanoramaSensorsViewer
 
-Maybe you're a developer, so, no more #RTFM, you'll read this later ;-) so **[go straight to the API doc](https://github.com/topheman/PanoramaSensorsViewer/tree/master/src/ "API doc")** ! (:wink) ...
+Maybe you're a developer, so, no more #RTFM, you'll read this later ;-) so **[go straight to the API doc]https://github.com/topheman/PanoramaSensorsViewer/tree/master/src/#panoramasensorsviewer---api-doc "API doc")** ! (:wink) ...
 
 This library will let you make webapps that can browse Google Street View just by moving your mobile device and looking at the panorama like you were inside it.
 
