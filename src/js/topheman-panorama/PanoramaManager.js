@@ -270,8 +270,8 @@ define(['topheman-panorama/utils/sensorsChecker','topheman-panorama/utils/device
             }
             var position = panorama.getPosition();
             return {
-                lat : position.nb,
-                lon : position.ob
+                lat : position.d,
+                lon : position.e
             };
         };
         
