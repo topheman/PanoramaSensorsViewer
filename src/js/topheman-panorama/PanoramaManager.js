@@ -268,10 +268,9 @@ define(['topheman-panorama/utils/sensorsChecker','topheman-panorama/utils/device
             if(panoramaInitiated === false){
                 throw new Error("Panorama needs to be init");
             }
-            var position = panorama.getPosition();
             return {
-                lat : position.d,
-                lon : position.e
+                lat : panorama.position.lat(),
+                lon : panorama.position.lng()
             };
         };
         
