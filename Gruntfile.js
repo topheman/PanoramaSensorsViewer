@@ -107,7 +107,8 @@ module.exports = function(grunt) {
                     'release/demo.custompanorama.html' : 'src/demo.custompanorama.html',
                     'release/demo.custompanorama.tiles.html' : 'src/demo.custompanorama.tiles.html',
                     'release/demo.events.html' : 'src/demo.events.html',
-                    'release/test.bug.android.firefox.html' : 'src/test.bug.android.firefox.html'
+                    'release/demo.deviceorientationhelper.html' : 'src/demo.deviceorientationhelper.html',
+                    'release/test.bug.android.firefox.html' : 'src/test.bug.android.firefox.html',
                 }
             }
         }

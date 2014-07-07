@@ -1,6 +1,10 @@
 RELEASES NOTES
 ==============
 
+#0.7.7
+
+* Updated Gruntfile.js (missing one html file for preprocessing)
+
 #0.7.6
 
 * fixed `options.disableTouchmove` (was broken on android phones on chrome and opera because of an update in blink).
