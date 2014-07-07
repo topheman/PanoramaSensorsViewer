@@ -52,6 +52,7 @@ define(['topheman-panorama/utils/sensorsChecker','topheman-panorama/utils/device
     PanoramaManager = function(panoramaHtmlObject){
         
         var panoramaDiv = panoramaHtmlObject,
+            lastTouchstartTimeStamp = 0,
             touchmoveCurrently = false;
         
         panoramaInitiated = false;
@@ -59,15 +60,21 @@ define(['topheman-panorama/utils/sensorsChecker','topheman-panorama/utils/device
         var prepareDisableTouchmove = function(options){
             var touchmoveCallback,
                 touchendCallback,
-                disableTouchmoveCallback;
+                disableTouchmoveCallback,
+                isIOs = /(iPhone|iPad|iPod)/i.test(navigator.userAgent);
             if(("ontouchmove" in window) && options && options.disableTouchmove){
                 if(typeof options.disableTouchmove === "function"){
                     disableTouchmoveCallback = options.disableTouchmove;
+                    touchstartCallback = function(e){
+                        lastTouchstartTimeStamp = e.timeStamp;
+                    };
                     touchmoveCallback = function(e){
-                        touchmoveCurrently = true;
-                        e.stopPropagation();
-                        e.preventDefault();
-                        disableTouchmoveCallback.call({},e);
+                        if(isIOs || (e.timeStamp - lastTouchstartTimeStamp) > 450){
+                            touchmoveCurrently = true;
+                            e.stopPropagation();
+                            e.preventDefault();
+                            disableTouchmoveCallback.call({},e);
+                        }
                     };
                     touchendCallback = function(e){
                         if(touchmoveCurrently === true){
@@ -79,9 +86,14 @@ define(['topheman-panorama/utils/sensorsChecker','topheman-panorama/utils/device
                     };
                 }
                 else {
+                    touchstartCallback = function(e){
+                        lastTouchstartTimeStamp = e.timeStamp;
+                    };
                     touchmoveCallback = function(e){
-                        touchmoveCurrently = true;
-                        e.preventDefault();
+                        if(isIOs || (e.timeStamp - lastTouchstartTimeStamp) > 450){
+                            touchmoveCurrently = true;
+                            e.preventDefault();
+                        }
                     };
                     touchendCallback = function(e){
                         if(touchmoveCurrently === true){
@@ -89,6 +101,9 @@ define(['topheman-panorama/utils/sensorsChecker','topheman-panorama/utils/device
                         }
                         touchmoveCurrently = false;
                     };                    
+                }
+                if(!isIOs){
+                    panoramaDiv.addEventListener('touchstart',touchstartCallback,false);
                 }
                 panoramaDiv.addEventListener('touchmove',touchmoveCallback,true);
                 panoramaDiv.addEventListener('touchend',touchendCallback,true);
